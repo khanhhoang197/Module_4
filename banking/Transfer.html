@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create customer</title>
+    <link rel="stylesheet" href="assets/bootstrap-5.2.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fontawesome-free-6.2.0-web/css/all.css">
+    <style>
+        .tollbarlist {
+            display: flex;
+            background-color: #299be4;
+            padding: 10px;
+            border: 1px solid black;
+        }
+
+        h3 {
+            padding-top: 10px;
+        }
+
+        .toolbar1 button :hover {
+            display: none;
+            color: white;
+        }
+
+        .toolbar1 button {
+            color: black;
+            float: right;
+            margin: 10px 20px;
+            width: 250px;
+            height: 40px;
+            border-radius: 20px;
+        }
+
+        .rowinfo {
+            background-color: green;
+        }
+
+        .textfomr {
+            padding-top: 20px;
+        }
+
+        .frmCreateCustomer {
+            padding-top: 20px;
+        }
+
+        .form-label {
+            padding-right: 20px;
+        }
+
+        .toolbar1 {
+            text-align: end;
+        }
+
+        .toolbar1 {
+            font-size: 20px;
+            padding: auto 20px;
+            margin-right: 40px;
+            margin-top: 8px;
+        }
+
+        .toolbar1 {
+            font-size: 20px;
+            padding: auto 20px;
+            margin-right: 40px;
+            margin-top: 8px;
+        }
+
+        .toolbar1 {
+            text-align: end;
+        }
+
+        .toolbar1 a {
+            font-size: 20px;
+            padding: auto 20px;
+            margin-left: 10px;
+
+            color: white;
+        }
+
+        div>h3 {
+            color: white;
+        }
+        .textTranfes{
+            display: flex;
+            /* justify-content: space-between; */
+        }
+        .textTranfes >.transfer-text{
+            padding: 10px;
+        }
+        .btn-transfer  {
+           padding-left: 8px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="tollbarlist">
+            <div class="col-6 col-m-4">
+                <h3>Transfer money Information</h3>
+            </div>
+            <div class="col-6 col-m-8 toolbar1">
+                <a class="btn btn-outline-secondary" href="index.html"><i class="fa fa-list" aria-hidden="true"></i>
+                    List of
+                    customers</a>
+            </div>
+        </div>
+        <form class="textfomr" method="post">
+            <div class="textTranfes">
+                <div class="mb-3 col-md-3 transfer-text ">
+                    <label class="form-label"><b>Sender ID</b></label>
+                    <input type="text" class="form-control" id="fullName" name="fullName" value="">
+                </div>
+                <div class="mb-3 col-md-3 transfer-text ">
+                    <label class="form-label"><b>Sender Name</b></label>
+                    <input type="text" class="form-control" id="email" name="email" value="">
+                </div>
+                <div class="mb-3 col-md-3 transfer-text ">
+                    <label class="form-label"><b>Email</b></label>
+                    <input type="text" class="form-control" id="fullName" name="fullName" value="">
+                </div>
+                <div class="mb-3 col-md-3 transfer-text ">
+                    <label class="form-label"><b>Sender balance</b></label>
+                    <input type="text" class="form-control" id="email" name="email" value="">
+                </div>
+            </div>
+            <div class="textTranfes">
+                <div class="mb-3 col-md-3 transfer-text">
+                    <label class="form-label "><b>Recipient Name</b></label>
+                    <input type="text" class="form-control" id="fullName" name="fullName" value="">
+                </div>
+                <div class="mb-3 col-md-3 transfer-text " >
+                    <label class="form-label "><b>Transfer Amount ($)</b></label>
+                    <input type="text" class="form-control" id="email" name="email" value="">
+                </div>
+                <div class="mb-3 col-md-3 transfer-text ">
+                    <label class="form-label"><b>Fees (%)</b></label>
+                    <input type="text" class="form-control" id="fullName" name="fullName" value="">
+                </div>
+                <div class="mb-3 col-md-3 transfer-text ">
+                    <label class="form-label"><b>Total amount of transaction ($)</b></label>
+                    <input type="text" class="form-control" id="email" name="email" value="">
+                </div>
+            </div>
+
+            <div class="btn-transfer">
+                <a type="submit" id="btnUpdateCustomer" class="btn btn-outline-primary">
+                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                    Transfer
+                </a>
+            </div>
+        </form>
+</body>
+
+</html>

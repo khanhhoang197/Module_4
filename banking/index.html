@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏦 maven-bank-customers-relations.herokuapp</title>
+    <link rel="stylesheet" href="assets/bootstrap-5.2.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fontawesome-free-6.2.0-web/css/all.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+   <style>
+        .tollbarlist {
+            display: flex;
+            background-color: #299be4;
+            padding: 10px;
+        }
+
+        h3 {
+            padding-top: 10px;
+        }
+
+        .toolbar1 button :hover {
+            display: none;
+            color: white;
+        }
+
+        .toolbar1 button {
+            color: black;
+            float: right;
+            margin: 10px 20px;
+            width: 250px;
+            height: 40px;
+            border-radius: 20px;
+        }
+        .rowinfo{
+            background-color: #4CAF50 !important;
+            color: white;
+        }
+        .btn-a{
+            text-align: end;
+        }
+        .btn-a a {
+        font-size: 20px;
+        padding: auto 20px;
+        margin-left: 10px;
+        margin-top: 8px;
+        color: white;
+}
+.btn-edit{
+    background-color: #299be4;
+}
+ .tollbarlist{
+    color: white;
+}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="tollbarlist">
+            <div class="col-5 col-sm-5">
+                <h3>List of customers</h3>
+            </div>
+            <div class="col-sm-7 btn-a">
+                <a class="btn btn-outline-secondary" href="Create-customer.html"><i class="fa fa-plus-square"></i> Add New Customer</a>
+                <a class="btn btn-outline-secondary" Href="Transfer-money-Information.html"><i class="fa-solid fa-clock-rotate-left"></i> Tranfer money Information</a>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr class="rowinfo" >
+                    <th scope="col">#</th>
+                    <th scope="col">FULLNAME</th>
+                    <th scope="col">EMAIL</th>
+                    <th scope="col">PHONE</th>
+                    <th scope="col">ADDRESS</th>
+                    <th scope="col">BALANCE</th>
+                    <th scope="col" colspan="6" style="text-align: center;">ACTION</th>
+                </tr>
+            </thead> 
+            <tbody>
+               
+                <tr>
+                    <th scope="row">5</th>
+                    <td>Amaya Bakeadsasdasassdr</td>
+                    <td>khanhhoang197.wbs@gmail.com</td>
+                    <td>0585853888</td>
+                    <td>huế</td>
+                    <td>20 000</td>
+                    <td>
+                        <td>
+                            <a class="btn btn-outline-secondary" title="EDIT" data-toggle="tooltip" href="update.html " data-bs-original-title="Edit">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a  class="btn btn-outline-success" title="DEPOSIT" data-toggle="tooltip" href="desposit.html"  data-bs-original-title="Edit">
+                             <i class="fa-regular fa-square-plus"></i></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a  class="btn btn-outline-warning" title="WHITDRAW" data-toggle="tooltip" href="withdraw.html" data-bs-original-title="Edit">
+                                <i class="fa-regular fa-square-minus"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-primary" title="TRANSFERS" data-toggle="tooltip" href="Transfer.html" data-bs-original-title="Edit">
+                                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-danger" title="SUSPENDED" data-toggle="tooltip" href="SUSPENDED.HTML" data-bs-original-title="Edit">
+                                <i class="fa-solid fa-ban"></i>
+                            </a>
+                        </td>
+                </tr>
+               
+            </tbody>
+        </table>
+    </div>
+    <script>
+        let icons = document.querySelectorAll('[data-toggle="tooltip"]');
+        icons.forEach((icon)=>{
+            new bootstrap.Tooltip(icon);
+        })
+    </script>
+</body>
+</html>
