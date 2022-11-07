@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Delete</title>
+    <th:block th:replace="/layout/head :: head"/>
+    <th:block th:replace="/layout/style :: style"/>
+</head>
+
+<body>
+<div class="container">
+    <div class="tollbarlist">
+        <div class="col-6 col-m-4">
+            <h3>Suspension of customers</h3>
+        </div>
+        <div class="col-6 col-m-8 toolbar1">
+            <a class="btn btn-outline-light" href="/customers"><i class="fa fa-list" aria-hidden="true"></i> List of
+                customers</a>
+        </div>
+    </div>
+    <form class="textfomr" method="post" th:action="@{'/customers/delete/'+ ${customer.getId()}}"
+          th:object="${customer}">
+        <fieldset class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label"><b>Full name</b></label>
+                <input type="text" class="form-control" readonly name="fullName" th:field="${customer.fullName}">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label"><b>Email</b></label>
+                <input type="text" class="form-control" readonly th:field="${customer.email}">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label"><b>Phone</b></label>
+                <input type="text" class="form-control" readonly th:field="${customer.phone}">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label"><b>Address</b></label>
+                <input type="text" class="form-control" readonly th:field="${customer.address}">
+            </div>
+            <div>
+                <button class="btn btn-outline-danger" type="submit">
+                    <i class="fa-solid fa-trash-can"></i> Delete
+                </button>
+            </div>
+
+        </fieldset>
+    </form>
+    <th:block th:replace="layout/footer :: footer"/>
+</div>
+<script>
+
+</script>
+</body>
+</html>

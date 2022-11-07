@@ -1,0 +1,84 @@
+  <!DOCTYPE html>
+  <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+      <title>Transfers</title>
+      <th:block th:replace="/layout/head :: head"/>
+      <th:block th:replace="/layout/style :: style"/>
+  </head>
+
+  <body>
+  <div class="container">
+      <div class="tollbarlist">
+          <div class="col-6 col-m-4">
+              <h3>Transfer money Information</h3>
+          </div>
+          <div class="col-6 col-m-8 toolbar1">
+              <a class="btn btn-outline-light" href="/customers"><i class="fa fa-list" aria-hidden="true"></i>
+                  List of
+                  customers</a>
+          </div>
+      </div>
+    <form method="post" th:object="${transfer}">
+      <fieldset class="row g-3">
+        <div class="col-md-3">
+          <label class="form-label">Sender ID</label>
+          <input type="text" class="form-control" th:field="${sender.id}"  readonly style="background-color: rgba(68, 67, 67, 0.295)">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Sender Name</label>
+          <input type="email" class="form-control" th:field="${sender.fullName}" readonly style="background-color: rgba(68, 67, 67, 0.295)">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Email</label>
+          <input type="text" class="form-control" th:field="${sender.email}" readonly style="background-color: rgba(68, 67, 67, 0.295)">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Sender balance</label>
+          <input type="number" class="form-control" th:field="${sender.balance}" readonly style="background-color: rgba(68, 67, 67, 0.295)">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Recipient Name</label>
+          <select th:field="*{recipient}" class="form-select">
+            <option th:each="recipient : ${recipients}" th:value="${recipient.id}"
+                    th:text="${'(' + recipient.id + ') ' + '- ' + recipient.fullName}"></option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Transfer Amount (VNĐ)</label>
+          <input type="number" class="form-control" th:field="*{transferAmount}" required step="50000">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Fees (%)</label>
+          <input type="number" class="form-control" value="10" id="fees" readonly style="background-color: rgba(68, 67, 67, 0.295)">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Total amount of transaction (VNĐ)</label>
+          <input type="number" class="form-control" th:field="*{transactionAmount}" readonly style="background-color: rgba(68, 67, 67, 0.295)">
+        </div>
+        <div class="col-md-12">
+          <button type="submit" id="btnCreateCustomer" class="btn btn-outline-primary">
+            <i class="fa fa-arrow-right-arrow-left"></i>
+            Transfer
+          </button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  </body>
+
+  </html>
+  <th:block th:replace="/layout/footer :: footer"/>
+</div>
+<script>
+  let elemTransferAmount = document.getElementById("transferAmount");
+
+  elemTransferAmount.addEventListener("input", function () {
+    let transferAmount = parseInt(document.getElementById("transferAmount").value);
+    let fees = 10;
+    let feesAmount = (transferAmount * fees) / 100;
+    document.getElementById("transactionAmount").value = transferAmount + feesAmount;
+  })
+</script>
+</body>
+</html>

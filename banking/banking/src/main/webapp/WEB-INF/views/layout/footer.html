@@ -1,0 +1,12 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="footer">
+    <footer>
+        <th:block th:if="${success}">
+            <div class="alert alert-success alert-dismissible d-flex align-items-center fade show">
+                <i class="fa-regular fa-circle-check"></i>
+                <label th:text="${success}"></label>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        </th:block>
+    </footer>
+</th:block>

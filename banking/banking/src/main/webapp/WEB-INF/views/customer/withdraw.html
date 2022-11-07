@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Widthdraw</title>
+    <th:block th:replace="/layout/head :: head"/>
+    <th:block th:replace="/layout/style :: style"/>
+</head>
+
+<body>
+<div class="container">
+    <div class="tollbarlist">
+        <div class="col-6 col-m-4">
+            <h3>Withdraw money from the customer's account</h3>
+        </div>
+        <div class="col-6 col-m-8 toolbar1">
+            <a class="btn btn-outline-light" href="/customers"><i class="fa fa-list" aria-hidden="true"></i> List of
+                customers</a>
+        </div>
+    </div>
+    <form class="textfomr" method="post" th:object="${withdraw}">
+        <fieldset class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label"><b>Customer ID</b></label>
+                <input type="text" class="form-control" th:field="${customer.id}" readonly>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label"><b>Full Name</b></label>
+                <input type="text" class="form-control" th:field="${customer.fullName}" readonly>
+            </div>
+            <form id="frmCreateCustomer" method="post">
+                <fieldset class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label"><b>Current balance ($)</b></label>
+                        <input type="text" class="form-control" th:field="${customer.balance}" readonly>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label"><b>Transaction Amount ($)</b></label>
+                        <input type="text" class="form-control" th:field="*{transactionAmount}" min="0" step="100000" required>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-outline-warning">
+                            <i class="fa fa-minus" aria-hidden="true"></i>
+                            Withdraw
+                        </button>
+                    </div>
+                </fieldset>
+            </form>
+        </fieldset>
+    </form>
+    <th:block th:replace="layout/footer :: footer"/>
+    <th:block th:if="${errorAction}">
+        <div class="alert-danger">
+            <h5 th:text="${errorAction}"></h5>
+        </div>
+    </th:block>
+    <th:block th:if="${error}">
+        <div class="alert-danger">
+            <h5>Vui lòng sửa lỗi bên dưới:</h5>
+            <ul>
+                <li th:each="err : ${#fields.errors('deposit.*')}" th:text="${err}"></li>
+            </ul>
+        </div>
+    </th:block>
+</div>
+</body>
+</html>
