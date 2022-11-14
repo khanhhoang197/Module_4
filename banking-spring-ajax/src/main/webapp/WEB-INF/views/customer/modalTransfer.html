@@ -1,0 +1,74 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="modalTransfer">
+
+    <div class="modal fade" id="modalTransfer" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: rgb(1, 146, 230);">
+                    <h3 class="modal-title" id="exampleModalLabel">Transfer Customer</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-alert-danger hide"></div>
+                    <form class="textform" method="post" id="frmTransfer">
+                        <fieldset class="row g-3">
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><b>Sender ID</b></label>
+                                <input type="text" class="form-control" id="senderIDTransfer" readonly
+                                       style="background-color: rgba(150, 145, 145, 0.349);">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label"><b>Sender Name</b></label>
+                                <input type="text" class="form-control" id="senderNameTransfer" readonly
+                                       style="background-color: rgba(150, 145, 145, 0.349);">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label"><b>Email</b></label>
+                                <input type="email" class="form-control" id="emailTransfer" readonly
+                                       style="background-color: rgba(150, 145, 145, 0.349);">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label"><b>Sender Balance</b></label>
+                                <input type="text" class="form-control" id="senderBalanceTransfer" readonly
+                                       style="background-color: rgba(150, 145, 145, 0.349);">
+                            </div>
+                        </fieldset>
+                        <fieldset class="row g-3">
+                            <input type="hidden" id="customerIdUp">
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><b>Recipient Name</b></label>
+                                <select class="form-select" id="recipientNameTransfer"
+                                        name="recipientNameTransfer">
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label"><b>Transfer Amount (đ)</b></label>
+                                <input type="number" class="form-control" id="amountTransfer" value="0">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label"><b>Fees (%)</b></label>
+                                <input type="number" class="form-control" id="feesTransfer" value="10" readonly
+                                       style="background-color: rgba(150, 145, 145, 0.349);">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label"><b>Total amount of transaction (đ)</b></label>
+                                <input type="number" class="form-control" id="totalAmountTransfer" readonly
+                                       style="background-color: rgba(150, 145, 145, 0.349);">
+                            </div>
+                        </fieldset>
+                        </fieldset>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline-primary" id="btnTransfer">
+                        <i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</th:block>

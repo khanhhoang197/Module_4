@@ -1,0 +1,51 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="modalUpdateCustomer">
+
+    <div class="modal fade" id="modalUpdate" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: rgb(77, 104, 107);">
+                    <h3 class="modal-title" id="exampleModalLabel">Update Customer</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-alert-danger hide"></div>
+                    <form id="frmUpdateCustomer" class="textform" method="post">
+                        <fieldset class="row g-3">
+                            <input type="hidden" id="customerIdUp">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label"><b>Full name</b></label>
+                                <input type="text" class="form-control" id="fullNameUp">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><b>Email</b></label>
+                                <input type="email" class="form-control" id="emailUp">
+                            </div>
+                        </fieldset>
+                        <fieldset class="row g-3 ">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label"><b>Phone</b></label>
+                                <input type="text" class="form-control" id="phoneUp">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><b>Address</b></label>
+                                <input type="text" class="form-control" id="addressUp">
+                            </div>
+                        </fieldset>
+                        </fieldset>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline-primary" id="btnUpdate">
+                        <i class="fa-solid fa-pen-to-square"></i> Update
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</th:block>

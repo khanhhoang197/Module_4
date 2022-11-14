@@ -1,0 +1,96 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="modalDeposit">
+
+<!--    <div class="modal fade" id="modalDeposit" tabindex="-1">-->
+<!--        <div class="modal-dialog modal-dialog-centered modal-lg">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-alert-danger hide"></div>-->
+<!--                    <h3 class="modal-title" id="exampleModalLabel">Deposit Customer</h3>-->
+<!--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--                </div>-->
+<!--                <div class="modal-body">-->
+<!--                    <div class="modal-alert-danger hide"></div>-->
+<!--                    <form class="textform" method="post" id="frmDeposit">-->
+<!--                        <fieldset class="row g-3">-->
+<!--                            <div class="col-md-6 mb-3">-->
+<!--                                <label class="form-label"><b>Customer ID</b></label>-->
+<!--                                <input type="text" class="form-control" id="customerIdDeposit" readonly-->
+<!--                                       style="background-color: rgba(150, 145, 145, 0.349);">-->
+<!--                            </div>-->
+<!--                            <div class="col-md-6">-->
+<!--                                <label class="form-label"><b>Full Name</b></label>-->
+<!--                                <input type="tetxt" class="form-control" id="fullNameDeposit" readonly-->
+<!--                                       style="background-color: rgba(150, 145, 145, 0.349);">-->
+<!--                            </div>-->
+<!--                        </fieldset>-->
+<!--                        <fieldset class="row g-3 ">-->
+<!--                            <div class="col-md-6 mb-3">-->
+<!--                                <label class="form-label"><b>Current balance (đ)</b></label>-->
+<!--                                <input type="number" class="form-control" id="balanceDeposit" readonly-->
+<!--                                       style="background-color: rgba(150, 145, 145, 0.349);">-->
+<!--                            </div>-->
+<!--                            <div class="col-md-6">-->
+<!--                                <label class="form-label"><b>Transaction Amount (đ)</b></label>-->
+<!--                                <input type="number" class="form-control" id="amountDeposit">-->
+<!--                            </div>-->
+<!--                        </fieldset>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>-->
+<!--                    <button type="button" class="btn btn-outline-success" id="btnDeposit">-->
+<!--                        <i class="fa-solid fa-square-plus"></i> Deposit-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div class="modal fade" id="modalDeposit" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: rgb(255, 208, 0);">
+                    <h3 class="modal-title" id="exampleModalLabel">Deposit Customer</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-alert-danger hide"></div>
+                    <form class="textform" method="post" id="frmDeposit">
+                        <fieldset class="row g-3">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label"><b>Customer ID</b></label>
+                                <input type="text" class="form-control" id="customerIdDeposit" readonly
+                                       style="background-color: rgba(150, 145, 145, 0.349);">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><b>Full Name</b></label>
+                                <input type="tetxt" class="form-control" id="fullNameDeposit" readonly
+                                       style="background-color: rgba(150, 145, 145, 0.349);">
+                            </div>
+                        </fieldset>
+                        <fieldset class="row g-3 ">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label"><b>Current balance (vnđ)</b></label>
+                                <input type="number" class="form-control" id="balanceDeposit" readonly
+                                       style="background-color: rgba(150, 145, 145, 0.349);">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><b>Transaction Amount (vnđ)</b></label>
+                                <input type="number" class="form-control" id="amountDeposit">
+                            </div>
+                        </fieldset>
+                        </fieldset>
+                    </form>
+
+                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-outline-success" id="btnDeposit">
+                                        <i class="fa-solid fa-square-plus"></i> Deposit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+</th:block>
