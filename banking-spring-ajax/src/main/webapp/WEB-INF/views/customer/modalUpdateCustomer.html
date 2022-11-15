@@ -12,30 +12,44 @@
                 <div class="modal-body">
                     <div class="modal-alert-danger hide"></div>
                     <form id="frmUpdateCustomer" class="textform" method="post">
-                        <fieldset class="row g-3">
-                            <input type="hidden" id="customerIdUp">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label"><b>Full name</b></label>
-                                <input type="text" class="form-control" id="fullNameUp">
+                        <input type="hidden" id="customerIdUp">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label"><b>Full name</b></label>
+                            <input type="text" class="form-control" id="fullNameUp">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label"><b>Email</b></label>
+                            <input type="email" class="form-control" id="emailUp">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label"><b>Phone</b></label>
+                            <input type="text" class="form-control" id="phoneUp">
+                        </div>
+                        <div class="row col-lg-12 mt-3">
+                            <div class="col-lg-3">
+                                <label>Province</label>
+                                <select class="form-select" id="provinceIdUp" name="provinceIdUp">
+
+                                </select>
                             </div>
-                            <div class="col-md-6">
-                                <label class="form-label"><b>Email</b></label>
-                                <input type="email" class="form-control" id="emailUp">
+                            <div class="col-lg-3">
+                                <label>District</label>
+                                <select class="form-select" id="districtIdUp" name="districtIdUp">
+
+                                </select>
                             </div>
-                        </fieldset>
-                        <fieldset class="row g-3 ">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label"><b>Phone</b></label>
-                                <input type="text" class="form-control" id="phoneUp">
+                            <div class="col-lg-3">
+                                <label>Ward</label>
+                                <select class="form-select" id="wardIdUp" name="warIdUp">
+
+                                </select>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label"><b>Address</b></label>
                                 <input type="text" class="form-control" id="addressUp">
                             </div>
-                        </fieldset>
-                        </fieldset>
+                        </div>
                     </form>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>

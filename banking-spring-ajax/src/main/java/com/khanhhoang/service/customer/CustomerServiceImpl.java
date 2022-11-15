@@ -32,6 +32,10 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Autowired
     private TransferRepository transferRepository;
+    @Override
+    public List<CustomerDTO> getAllCustomerDTO() {
+        return customerRepository.getAllCustomerDTO();
+    }
 
     @Override
     public List<CustomerDTO> findAllICustomerDTOByDeletedIsFalse(){

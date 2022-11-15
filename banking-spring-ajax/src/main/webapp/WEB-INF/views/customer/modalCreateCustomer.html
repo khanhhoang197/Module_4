@@ -3,7 +3,7 @@
 <th:block th:fragment="modalCreateCustomer">
 
     <div class="modal fade" id="modalCreateCustomer" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: rgb(0, 162, 255);">
                     <h3 class="modal-title " id="exampleModalLabel">Create Customer</h3>
@@ -12,28 +12,41 @@
                 <div class="modal-body">
                     <div class="modal-alert-danger hide"></div>
                     <form id="frmCreateCustomer" class="textform">
-                        <fieldset class="row g-3">
-                            <input type="hidden" id="customerIdCre">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label"><b>Full name</b></label>
-                                <input type="text" class="form-control" id="fullNameCre" name="fullNameCre">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label"><b>Email</b></label>
-                                <input type="email" class="form-control" id="emailCre">
-                            </div>
+                        <input type="hidden" id="customerIdCre">
+                        <fieldset class="row g-3 mb-3">
+                        <div class="col-md-4">
+                            <label class="form-label text-center"><b>Full name</b></label>
+                            <input type="text" class="form-control" id="fullNameCre" name="fullNameCre">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label text-center"><b>Email</b></label>
+                            <input type="email" class="form-control" id="emailCre">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label text-center"><b>Phone</b></label>
+                            <input type="text" class="form-control" id="phoneCre">
+                        </div>
                         </fieldset>
-
-                        <fieldset class="row g-3 ">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label"><b>Phone</b></label>
-                                <input type="text" class="form-control" id="phoneCre">
+                        <fieldset class="row g-3 mt-3">
+                            <div class="col-lg-3">
+                                <label  class="form-label text-center"><b>Province</b></label>
+                                <select class="form-select" id="provinceIdCre" name="provinceIdCre">
+                                </select>
                             </div>
-                            <div class="col-md-6">
-                                <label class="form-label"><b>Address</b></label>
+                            <div class="col-lg-3">
+                                <label class="form-label text-center"><b>District</b> </label>
+                                <select class="form-select" id="districtIdCre" name="districtIdCre">
+                                </select>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="form-label text-center"><b>Ward</b></label>
+                                <select class="form-select" id="wardIdCre" name="warIdCre">
+                                </select>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="form-label text-center"><b>Address</b></label>
                                 <input type="text" class="form-control" id="addressCre">
                             </div>
-                        </fieldset>
                         </fieldset>
                     </form>
 

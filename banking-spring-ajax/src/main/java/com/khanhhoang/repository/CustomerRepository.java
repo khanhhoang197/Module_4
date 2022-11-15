@@ -26,6 +26,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
             "FROM Customer AS c " +
             "WHERE c.deleted = false"
     )
+    List<CustomerDTO> getAllCustomerDTO();
     List<CustomerDTO> getAllICustomerDTOByDeletedIsFalse();
 
     List<Customer> findAllByIdNot(long id);

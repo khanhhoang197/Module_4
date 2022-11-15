@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/customers")
 public class CustomerAPI {
     @Autowired
     private AppUtils appUtils;
@@ -24,16 +24,16 @@ public class CustomerAPI {
     @Autowired
     private ICustomerService customerService;
 
-    @GetMapping("/customers")
-    public ResponseEntity<?> findAllByDeletedIsFalse() {
-        List<CustomerDTO> customers = customerService.findAllICustomerDTOByDeletedIsFalse();
+    @GetMapping
+    public ResponseEntity<?> getAllByDeletedIsFalse() {
+        List<CustomerDTO> customers = customerService.getAllCustomerDTO();
         if (customers.size() == 0) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(customers, HttpStatus.OK);
     }
 
-    @GetMapping("/customers/{customerId}")
+    @GetMapping("/{customerId}")
     public ResponseEntity<?> getById(@PathVariable long customerId) {
 
         Optional<Customer> customerOptional = customerService.findById(customerId);
@@ -45,7 +45,7 @@ public class CustomerAPI {
         return new ResponseEntity<>(customerOptional.get().toCustomerDTO(), HttpStatus.OK);
     }
 
-    @PostMapping("/customers")
+    @PostMapping
     public ResponseEntity<?> create(@RequestBody Customer customer) {
 
         Optional<Customer> customerOptional = customerService.findByEmail(customer.getEmail());
@@ -61,7 +61,7 @@ public class CustomerAPI {
         return new ResponseEntity<>(newCustomer, HttpStatus.CREATED);
     }
 
-    @PatchMapping("customers/{customerId}")
+    @PatchMapping("/{customerId}")
     public ResponseEntity<?> update(@PathVariable Long customerId, @RequestBody Customer customer) {
 
         Optional<Customer> customerOptional = customerService.findById(customerId);
@@ -83,7 +83,7 @@ public class CustomerAPI {
         return new ResponseEntity<>(updatedCustomer, HttpStatus.OK);
     }
 
-    @DeleteMapping("customers/delete/{customerId}")
+    @DeleteMapping("/delete/{customerId}")
     public ResponseEntity<?> delete(@PathVariable Long customerId) {
 
         Optional<Customer> customerOptional = customerService.findById(customerId);

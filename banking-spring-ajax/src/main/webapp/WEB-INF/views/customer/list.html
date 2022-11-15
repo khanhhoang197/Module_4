@@ -46,7 +46,10 @@
             getCustomersWhereIdIsNot: App.CUSTOMER_API + "?deleted=0&id_ne=",
             deposit: App.DEPOSIT_API,
             withdraw: App.WITHDRAW_API,
-            transfer: App.TRANSFER_API
+            transfer: App.TRANSFER_API,
+            getAllProvinces: App.PROVINCE_URL,
+            getAllDistrictsByProvinceId: App.PROVINCE_URL + "district/",
+            getAllWardsByDistrictId: App.PROVINCE_URL + "ward/"
         },
         elements: {},
         loadData: {},
@@ -70,6 +73,9 @@
     page.dialogs.elements.fullNameCre = $("#fullNameCre");
     page.dialogs.elements.emailCre = $("#emailCre");
     page.dialogs.elements.phoneCre = $("#phoneCre");
+    page.dialogs.elements.provinceCre = $("#provinceIdCre");
+    page.dialogs.elements.districtCre = $("#districtIdCre");
+    page.dialogs.elements.wardCre = $("#wardIdCre");
     page.dialogs.elements.addressCre = $("#addressCre");
     page.dialogs.elements.btnCreate = $("#btnCreate");
 
@@ -79,6 +85,9 @@
     page.dialogs.elements.fullNameUp = $("#fullNameUp");
     page.dialogs.elements.emailUp = $("#emailUp");
     page.dialogs.elements.phoneUp = $("#phoneUp");
+    page.dialogs.elements.provinceUp = $("#provinceIdUp");
+    page.dialogs.elements.districtUp = $("#districtIdUp");
+    page.dialogs.elements.wardUp = $("#wardIdUp");
     page.dialogs.elements.addressUp = $("#addressUp");
     page.dialogs.elements.btnUpdate = $("#btnUpdate");
 
@@ -115,9 +124,11 @@
 
 
     let customer = new Customer();
+    let locationRegion = new LocationRegion();
     let deposit = new Deposit();
     let withdraw = new Withdraw();
     let transfer = new Transfer();
+
 
     // ------------------- GET ALL CUSTOMER -------------------  //
 
@@ -131,9 +142,9 @@
             url: page.urls.getAllCustomers
         })
             .done((data) => {
-
                 $.each(data, (i, item) => {
-                    page.elements.tbCustomerBody.prepend(page.commands.renderCustomer(item));
+                    locationRegion = item.locationRegion;
+                    page.elements.tbCustomerBody.prepend(page.commands.renderCustomer(item, locationRegion));
                 })
                 page.commands.enableTooltip();
                 page.commands.removeHandleShowModal();
@@ -165,16 +176,18 @@
 
 
     // ------------------- RENDER LIST -------------------  //
-    page.commands.renderCustomer = (obj) => {
+    page.commands.renderCustomer = (obj, locationRegion) => {
         return `
             <tr id="tr_${obj.id}">
                             <td class="text-center">${obj.id}</td>
                             <td class="text-center">${obj.name}</td>
                             <td class="text-center">${obj.email}</td>
                             <td class="text-center">${obj.phone}</td>
-                            <td class="text-end">${obj.balance} vnđ</td>
+                            <td class="text-end">${new Intl.NumberFormat('vi-VN', {style: 'currency',currency: 'vnđ'}).format(obj.balance)}</td>
+                            <td>${locationRegion.provinceName}</td>
+                            <td>${locationRegion.districtName}</td>
+                            <td>${locationRegion.wardName}</td>
                             <td class="text-center">${obj.address}</td>
-
                             <td>
                                 <button data-id="${obj.id}" class="btn btn btn-outline-dark update"
                                     title="Edit" data-toggle="tooltip"
@@ -214,9 +227,153 @@
                         </tr>
             `;
     }
-
     // ------------------- END RENDER LIST -------------------  //
 
+
+    // --------------------- PROVINCE -----------------------  //
+    page.commands.getAllProvinces = () => {
+        return $.ajax({
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            type: "GET",
+            url: page.urls.getAllProvinces
+        })
+            .done((data) => {
+                let results = data.results;
+
+                results.map(item => {
+                    let str = `<option value="${item.province_id}">${item.province_name}</option>`;
+                    page.dialogs.elements.provinceCre.append(str);
+                    // page.dialogs.elements.provinceUp.append(str);
+                })
+
+            })
+            .fail((error) => {
+                console.log(error);
+                console.log("Không thể tải dữ liệu Tỉnh/Thành phố");
+            })
+    }
+
+    page.commands.getAllDistrictsByProvinceId = (provinceId) => {
+        return $.ajax({
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            type: "GET",
+            url: page.urls.getAllDistrictsByProvinceId + provinceId
+        })
+            .done((data) => {
+
+                page.dialogs.elements.districtCre.empty();
+                // page.dialogs.elements.districtUp.empty();
+
+                let results = data.results;
+
+                results.map(item => {
+                    let str = `<option value="${item.district_id}">${item.district_name}</option>`;
+                    page.dialogs.elements.districtCre.append(str);
+                    // page.dialogs.elements.districtUp.append(str);
+                })
+            })
+            .fail((error) => {
+                console.log(error);
+                console.log("Không thể tải dữ liệu Thành phố/Quận/Huyện");
+            })
+    }
+
+    page.commands.getAllWardsByDistrictId = (districtId) => {
+        return $.ajax({
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            type: "GET",
+            url: page.urls.getAllWardsByDistrictId + districtId
+        })
+            .done((data) => {
+                page.dialogs.elements.wardCre.empty();
+                // page.dialogs.elements.wardUp.empty();
+
+                let results = data.results;
+
+                results.map(item => {
+                    let str = `<option value="${item.ward_id}">${item.ward_name}</option>`;
+                    page.dialogs.elements.wardCre.append(str);
+                    // page.dialogs.elements.wardUp.append(str);
+                })
+            })
+            .fail((error) => {
+                console.log(error);
+                console.log("Không thể tải dữ liệu Phường/Xã/Thị trấn");
+            })
+    }
+
+    page.dialogs.commands.provinceChange = () => {
+        // page.elements.loader.removeClass("hide");
+        return $.ajax({
+            type: "GET",
+            url: page.urls.getAllDistrictsByProvinceId + locationRegion.provinceId
+        }).done((data) => {
+            page.dialogs.elements.districtCre.empty();
+            // page.dialogs.elements.districtUp.empty();
+
+            let results = data.results;
+
+            results.map(item => {
+                let str = `<option value="${item.district_id}">${item.district_name}</option>`;
+                page.dialogs.elements.districtCre.append(str);
+                // page.dialogs.elements.districtUp.append(str);
+            })
+
+        }).fail(function (error) {
+            console.log(error)
+        }).always(function () {
+            page.elements.loader.addClass("hide");
+        });
+    }
+
+    page.dialogs.elements.provinceCre.on("change", function () {
+        let provinceId = $(this).val();
+
+        page.commands.getAllDistrictsByProvinceId(provinceId).then(() => {
+            let districtId = page.dialogs.elements.districtCre.val();
+
+            page.commands.getAllWardsByDistrictId(districtId);
+        });
+    });
+
+    page.dialogs.elements.provinceUp.on("change", function () {
+        locationRegion.provinceId = page.dialogs.elements.provinceUp.val();
+
+        page.dialogs.commands.provinceChange().then(() => {
+            locationRegion.districtId = page.dialogs.elements.districtUp.val();
+
+            page.dialogs.elements.districtUp.prop("selectedIndex", 0).val();
+
+            page.dialogs.commands.districtChange().then(() => {
+                page.dialogs.elements.wardUp.prop("selectedIndex", 0).val();
+            });
+        });
+    });
+
+    page.dialogs.elements.districtCre.on("change", function () {
+        let districtId = $(this).val();
+
+        page.commands.getAllWardsByDistrictId(districtId);
+    })
+
+    page.dialogs.elements.districtUp.on("change", function () {
+        locationRegion.districtId = $(this).val();
+
+        page.dialogs.commands.districtChange().then(() => {
+            page.dialogs.elements.wardUp.prop("selectedIndex", 0).val();
+        });
+    })
+
+    //  ---------------------------  END PROVINCE  ---------------------------- //
 
     // ------------------------------  create  ---------------------------- //
 
@@ -279,6 +436,15 @@
             this.defaultShowErrors();
         },
         submitHandler: function () {
+            locationRegion.id = 0;
+            locationRegion.provinceId = page.dialogs.elements.provinceCre.val();
+            locationRegion.provinceName = page.dialogs.elements.provinceCre.find("option:selected").text();
+            locationRegion.districtId = page.dialogs.elements.districtCre.val();
+            locationRegion.districtName = page.dialogs.elements.districtCre.find("option:selected").text();
+            locationRegion.wardId = page.dialogs.elements.wardCre.val();
+            locationRegion.wardName = page.dialogs.elements.wardCre.find("option:selected").text();
+            locationRegion.address = page.dialogs.elements.addressCre.val();
+
             customer.name = page.dialogs.elements.fullNameCre.val();
             customer.email = page.dialogs.elements.emailCre.val();
             customer.phone = page.dialogs.elements.phoneCre.val();
@@ -302,7 +468,8 @@
             data: JSON.stringify(customer)
         })
             .done((data) => {
-                page.elements.tbCustomerBody.prepend(page.commands.renderCustomer(data));
+                locationRegion = customer.locationRegion;
+                page.elements.tbCustomerBody.prepend(page.commands.renderCustomer(data, locationRegion));
                 page.commands.removeHandleShowModal();
                 page.commands.groupHandleShow();
                 page.dialogs.elements.modalCreateCustomer.modal("hide");
@@ -942,6 +1109,16 @@
     page.commands.loadData = () => {
         page.commands.getAllCustomers();
         page.commands.groupHandleShow();
+
+        page.commands.getAllProvinces().then(() => {
+            let provinceId = page.dialogs.elements.provinceCre.val();
+
+            page.commands.getAllDistrictsByProvinceId(provinceId).then(() => {
+                let districtId = page.dialogs.elements.districtCre.val();
+
+                page.commands.getAllWardsByDistrictId(districtId);
+            });
+        })
 
     }
 
